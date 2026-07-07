@@ -4,7 +4,7 @@ export const profile = {
   email: "rsanjay9601@gmail.com",
   location: "Chennai, Tamil Nadu, India",
   // Replace with your real WhatsApp number (country code + number, digits only)
-  whatsapp: "919876543210",
+  whatsapp: "918667039411",
   linkedin: "https://linkedin.com/in/sanjay-kumar-8b748919a",
   github: "https://github.com/Sanjaykumar45",
   resume: "/Resume.pdf",
