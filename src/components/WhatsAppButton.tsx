@@ -13,7 +13,7 @@ export default function WhatsAppButton() {
   }, []);
 
   const href = `https://wa.me/${profile.whatsapp}?text=${encodeURIComponent(
-    "Hi Sanjay, I came across your portfolio and would like to connect.",
+    "Hi Sanjay,\n\nI came across your portfolio and was impressed by your work. I'd like to connect with you to discuss a potential project. Please let me know when you're available.\n\nThank you!"
   )}`;
 
   return (
