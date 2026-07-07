@@ -119,8 +119,9 @@ export default function Contact() {
       ]);
 
       // 3. Show success only after both emails are sent
-      toast.success("Message sent successfully!", {
-        description: "Thanks for reaching out. A confirmation email has been sent to your inbox.",
+      toast.success("Message sent successfully! 🚀", {
+        description: `Thank you for reaching out! I've received your message, and a confirmation email has been sent to ${form.email}. If you don't receive the confirmation email within 2–5 minutes, please check your Spam, Junk, or Promotions folder.`,
+        duration: 10000,
       });
 
       setForm({
