@@ -114,6 +114,40 @@
   --shadow-glow: 4px 4px 0 0 var(--ink);
 }
 
+.dark {
+  /* Backgrounds */
+  --background: oklch(0.17 0.02 260);
+  --foreground: oklch(0.97 0.01 90);
+
+  --card: oklch(0.23 0.02 260);
+  --card-foreground: oklch(0.97 0.01 90);
+
+  --popover: oklch(0.23 0.02 260);
+  --popover-foreground: oklch(0.97 0.01 90);
+
+  /* Brand colors stay the same */
+  --primary: oklch(0.60 0.21 22);
+  --primary-foreground: oklch(0.99 0.01 90);
+
+  --secondary: oklch(0.28 0.02 260);
+  --secondary-foreground: oklch(0.97 0.01 90);
+
+  --muted: oklch(0.28 0.02 260);
+  --muted-foreground: oklch(0.75 0.02 260);
+
+  --accent: oklch(0.82 0.16 85);
+  --accent-foreground: oklch(0.15 0.02 260);
+
+  --border: oklch(0.38 0.02 260);
+  --input: oklch(0.38 0.02 260);
+  --ring: oklch(0.60 0.21 22);
+
+  /* Comic theme */
+  --ink: oklch(0.97 0.01 90);
+  --surface: oklch(0.23 0.02 260);
+  --surface-2: oklch(0.28 0.02 260);
+}
+
 @theme inline {
   --color-brand: var(--brand);
   --color-brand-foreground: var(--brand-foreground);
@@ -172,3 +206,10 @@
 
 .animate-float { animation: float 8s ease-in-out infinite; }
 .animate-pulse-ring { animation: pulse-ring 2s infinite; }
+ 
+*{
+    transition:
+      background-color .35s ease,
+      color .35s ease,
+      border-color .35s ease;
+}
