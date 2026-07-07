@@ -15,6 +15,8 @@ const info = [
 export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", subject: "", message: "", mobile: "" });
   const [sending, setSending] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [submittedEmail, setSubmittedEmail] = useState("");
 
   // const formattedMessage = `
   // Subject: ${form.subject}
@@ -102,7 +104,7 @@ export default function Contact() {
       await Promise.all([
 
         // 1. Send notification email to you
-        await emailjs.send(
+        emailjs.send(
           "service_1z7n25j", // Your Service ID
           "template_0hdbecj", // Your Template ID
           templateParams,
@@ -110,7 +112,7 @@ export default function Contact() {
         ),
 
         // 2. Send auto-reply to visitor
-        await emailjs.send(
+        emailjs.send(
           "service_1z7n25j",
           "template_alsa863", // A separate template for auto-reply
           templateParams,
@@ -119,10 +121,13 @@ export default function Contact() {
       ]);
 
       // 3. Show success only after both emails are sent
-      toast.success("Message sent successfully! 🚀", {
-        description: `Thank you for reaching out! I've received your message, and a confirmation email has been sent to ${form.email}. If you don't receive the confirmation email within 2–5 minutes, please check your Spam, Junk, or Promotions folder.`,
-        duration: 10000,
+      toast.success("Message sent successfully!", {
+        description: `A confirmation email has been sent to ${form.email}.`,
+        duration: 4000,
       });
+
+      setShowSuccessModal(true);
+      setSubmittedEmail(form.email);
 
       setForm({
         name: "",
@@ -288,6 +293,82 @@ export default function Contact() {
           </motion.form>
         </div>
       </div>
+      {showSuccessModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8, y: 40 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="w-full max-w-md rounded-3xl bg-white p-8 shadow-2xl"
+          >
+            <div className="flex justify-center">
+
+              <div className="flex h-20 w-20 items-center justify-center rounded-full bg-green-100">
+
+                <CheckCircle2
+                  size={50}
+                  className="text-green-600"
+                />
+
+              </div>
+
+            </div>
+
+            <h2 className="mt-6 text-center text-2xl font-bold">
+              Thank You!
+            </h2>
+
+            <p className="mt-3 text-center text-gray-600">
+              Your message has been sent successfully.
+            </p>
+
+            <div className="mt-6 rounded-xl bg-gray-50 p-4">
+
+              <p className="text-sm text-gray-500">
+                Confirmation Email
+              </p>
+
+              <p className="font-semibold break-all">
+                {submittedEmail}
+              </p>
+
+            </div>
+
+            <div className="mt-6 space-y-3 text-sm text-gray-600">
+
+              <p>
+                ✅ I've successfully received your message.
+              </p>
+
+              <p>
+                📧 A confirmation email has been sent to your inbox.
+              </p>
+
+              <p>
+                ⏳ I'll review your inquiry and respond within <strong>24 hours</strong>.
+              </p>
+
+              <p className="rounded-lg border border-yellow-200 bg-yellow-50 p-3 text-yellow-800">
+                <strong>Can't find the email?</strong>
+                <br />
+                Please check your <strong>Spam</strong>, <strong>Junk</strong>, or <strong>Promotions</strong> folder.
+              </p>
+
+            </div>
+
+            <button
+              onClick={() => setShowSuccessModal(false)}
+              className="mt-8 w-full rounded-xl bg-gradient-to-r from-indigo-600 to-violet-600 py-3 font-semibold text-white transition hover:scale-[1.02]"
+            >
+              Back to Portfolio
+            </button>
+
+          </motion.div>
+
+        </div>
+      )}
     </section>
 
 
